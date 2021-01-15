@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %} Sign_up {% endblock %}
+{% block title %} Sign up {% endblock %}
 {% load crispy_forms_tags %}
 
 {% block body %}
@@ -8,13 +8,14 @@
 
     {% if registered %}
         <div class="alert alert-success" role="alert">
-            Registration completed successfully <a href="#">Login here</a>
+            Registration completed successfully <a href="{% url 'login:sign_in' %}">Login here</a>
         </div>
     {% else %}
         <form action="" method="POST">
             {{ form|crispy }}
             {% csrf_token %}
-            <input type="submit" name="submit" value="Register">
+            <br>
+            <input type="submit" name="submit" value="Register" class="btn btn-success">
         </form>
         <hr>
         Already have account? <a href="#">Login here</a>

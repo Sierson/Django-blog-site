@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django_cleanup.apps.CleanupConfig',
     'django.contrib.staticfiles',
     'crispy_forms',
     'login',
@@ -136,3 +137,5 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+LOGIN_URL = '/account/signin/'

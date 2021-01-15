@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Sign in {% endblock %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+    <h1>Change profile picture</h1>
+    <hr>
+        <form action="" method="POST" enctype="multipart/form-data">
+            {{ form|crispy }}
+            {% csrf_token %}
+            <br>
+            <input type="submit" name="submit" value="Change profile picture" class="btn btn-primary">
+        </form>
+
+{% endblock %}
