@@ -22,6 +22,9 @@ class Comment(models.Model):
     content = models.TextField(max_length=1000, verbose_name="Write your comment here...")
     publish_date = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-publish_date']
+
     def __str__(self):
         return self.content
 

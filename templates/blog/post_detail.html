@@ -2,9 +2,42 @@
 {% block title %} Post {% endblock %}
 
 {% block body %}
-  <div class="row">
-      <div class="col-sm-6">
-          <h2>{{ post.title }}</h2>
+    <div class="row">
+      <div class="col-sm-8">
+          <h1>{{ post.title }}</h1><br><hr>
+          <b><i>Added on: {{ post.publish_date }}</i></b><br>
+          <b><i>Updated on: {{ post.update_date }}</i></b><br>
+          <hr>
+          <b>Liked: {{ post.like_post.count }} | Comments: {{ post.comment_post.count }}</b><br>
+          {% if not already_liked %}
+          <a href="{% url 'blog:liked_post' pk=post.pk %}"><i class="fas fa-thumbs-up"></i></a>
+          {% else %}
+          <a href="{% url 'blog:unliked_post' pk=post.pk %}"><i class="fas fa-thumbs-down"></i></a>
+          {% endif %}
+      </div>
+  
+      <div class="col-sm-4">
+        <img src="/media/{{ post.image }}">
+      </div>
+
+      <div class="col-sm-12" style="font-size: 22px; margin-top: 20px;">
+        <p>{{ post.content|linebreaks }}</p>
+      </div>
+      <div class="col-sm-4" style="height: 200px;">
+        <form method="POST">
+        {{ form }}
+        {% csrf_token %}
+        <input type="submit" name="submit" value="add comment">
+        </form>
+      </div>
+      <div class="col-sm-8">
+        
+        <ul>
+          {% for comment in post.comment_post.all %}
+            <li>{{ comment.content }} <b><i>by: {{ comment.user }}</i></b></li>
+            <hr>
+          {% endfor %}
+        </ul>
       </div>
   </div>
 {% endblock %}
